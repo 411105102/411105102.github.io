@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Card Hover Title</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>作業07</title>
+	<style>
+        #form02{
+          color : red;
+        }
+        h4{
+          color : blue;
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<div class="card">
-			<div class="face face1">
-				<div class="content">
-					<img src="design.png">
-					<h3>事業經營系</h3>
-				</div>
-			</div>
-			<div class="face face2">
-				<div class="content">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#">Read More</a>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="face face1">
-				<div class="content">
-					<img src="logo-1.png">
-					<h3>大同大學</h3>
-				</div>
-			</div>
-			<div class="face face2">
-				<div class="content">
-					<p>民國52年本校奉准改制為大同工學院，民國88年改名為大同大學。本校目前共有15系所、2碩士學位學程，分屬工程學院、電機資訊學院、經營學院及設計學院。</p>
-					<a href="#">Read More</a>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="face face1">
-				<div class="content">
-					<img src="launch.png">
-					<h3>我是誰</h3>
-				</div>
-			</div>
-			<div class="face face2">
-				<div class="content">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#">Read More</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<form id ="form01">
+	<label>待輸入的資料個數為</label>
+	<input type="number" name="number01" placeholder="0"><br>
+</form>
+<button onclick="inputNo()">產生輸入表格</button>
+<div id="demo01"></div>
+<div id="demo02"></div>
+
+<script>
+var no = 0;
+function inputNo(){
+    const x =document.getElementById("form01");
+    var item = x.elements[0].value;
+    no = item;
+    text01 = "<form id=\"form02\">";
+    for (i=1;i<=item;i++){
+        text01 += i + ". ";
+        text01 += "<input type=\"text\">" + "<br>";
+    }
+    text01 += "</form>";
+    text01 += "<button onclick=\"stat()\">計算統計量</button>";
+    document.getElementById("demo01").innerHTML = text01;
+    }
+function stat(){
+    const y =document.getElementById("form02");
+    var sum = 0;
+    var sum01 = 0;
+    text02 = "";
+    for (i=0;i<no;i++){
+        sum += Number(y.elements[i].value);
+        sum01 +=Math.pow(Number(y.elements[i].value),2);
+        text02 += "第" +(i+1) + "個數值為" + y.elements[i].value + "<br>";
+        }
+        text02 += "<br>";
+        text02 += "<h4>這" + no + "個數的平均數為 " + sum / no + "<h4>";
+        text02 += "<h4>這" + no + "個數的標準差為 " + Math.sqrt((sum01-sum*sum/no)/(no-1)) + "<h4>";
+        document.getElementById("demo02").innerHTML = text02;
+        }
+</script>
 </body>
 </html>
